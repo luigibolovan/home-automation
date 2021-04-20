@@ -1,0 +1,7 @@
+# python bytecode
+*__pycache__/
+
+# python virtual environment
+*virtualenv/
+
+

@@ -14,8 +14,8 @@
 
 
 #define WIFI_SSID     
-#define WIFI_PASSWORD
-#define LOCAL_GW_IP   ""
+#define WIFI_PASSWORD 
+#define LOCAL_GW_IP   "192.168.1.6:5000"
 #define POST_PERIOD   5000
 
 void postToGW(String data) {
@@ -29,24 +29,23 @@ void postToGW(String data) {
      **************** CODE EXECUTION *************
      *********************************************/
     // post data
-    // Serial.print("[HTTP] begin...\n");
-    // http.begin(client, "http://" LOCAL_GW_IP "/sensors"); //HTTP
-    // http.addHeader("Content-Type", "application/json");
+    Serial.print("[HTTP] begin...\n");
+    http.begin(client, "http://" LOCAL_GW_IP "/sensors"); //HTTP
+    http.addHeader("Content-Type", "application/json");
 
-    // Serial.print("[HTTP] POST...\n");
-    // int httpCode = http.POST(dataReceived);
-    // if (httpCode > 0) 
-    // {
-    //     Serial.printf("[HTTP] POST... code: %d\n", httpCode);
-    // }
-    // else
-    // {
-    //     Serial.printf("[HTTP] POST... failed, error: %s\n", http.errorToString(httpCode).c_str());  
-    // }
-    // http.end();
+    Serial.print("[HTTP] POST...\n");
+    int httpCode = http.POST(data);
+    if (httpCode > 0)
+    {
+        Serial.printf("[HTTP] POST... code: %d\n", httpCode);
+    }
+    else
+    {
+        Serial.printf("[HTTP] POST... failed, error: %s\n", http.errorToString(httpCode).c_str());  
+    }
+    http.end();
 
-    Serial.println(data);
-    // cleanup
+    // Serial.println(data);
 }
 
 void setup() {
@@ -54,6 +53,7 @@ void setup() {
      *************** INITIAL SETUP ****************
      *********************************************/
     Serial.begin(9600);
+    pinMode(LED_BUILTIN, OUTPUT);
     for (char t = 4; t > 0; t--) 
     {
         Serial.printf("Wait %d...\n", t);
@@ -91,7 +91,9 @@ void loop() {
         sensorData.concat(readByte);
         if (readByte == '\n')
         {
+            digitalWrite(LED_BUILTIN, LOW);   // Turn the LED on
             postToGW(sensorData);
+            digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off
         }
     }
 }

@@ -1,19 +1,18 @@
 #!/bin/bash
-
 if [ ! -d virtualenv/ ]; then
-echo "virtual env does not exist"
-echo "creating virtual environment"
+echo "[SETUP] Virtual environment does not exist"
+echo "[SETUP] Creating virtual environment"
 python3 -m venv virtualenv/
+echo "[SETUP] Virtual environment created"
 
-echo "virtual environment created"
-echo "activate virtual environment"
+echo "[SETUP] Activate virtual environment"
 source virtualenv/bin/activate
 
-echo "fetching flask..."
+echo "[SETUP] Fetching Flask..."
 pip install flask > /dev/null
-echo "flask installed"
-
+echo "[SETUP] Flask installed"
 fi
 
+echo "Starting server..."
 export FLASK_APP=home-automation-gateway.py
 flask run --host=0.0.0.0
