@@ -15,7 +15,7 @@
 
 #define WIFI_SSID     
 #define WIFI_PASSWORD 
-#define LOCAL_GW_IP   "192.168.1.6:5000"
+#define LOCAL_GW_IP   "192.168.1.10:5000"
 #define POST_PERIOD   5000
 
 void postToGW(String data) {
