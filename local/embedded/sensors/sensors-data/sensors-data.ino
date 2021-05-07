@@ -15,7 +15,7 @@
 #define MQ4_PIN                A0
 #define DHT_PIN                8
 #define DHT_TYPE               DHT22
-#define MEASUREMENT_PERIOD     5000
+#define MEASUREMENT_PERIOD     30000
 
 DHT dht(DHT_PIN, DHT_TYPE);
 SoftwareSerial sensorSerial(RX_PIN, TX_PIN);
@@ -57,13 +57,18 @@ void loop() {
     {
         Serial.println("Failed to serialize json and send through serial");
     }
-    Serial.print("\n");
+    else
+    {
+        Serial.print("\n");
+    }
 #endif
     if (serializeJson(jsonDoc, sensorSerial) == 0)
     {
         Serial.println("Failed to serialize json and send through serial");
     }
-    sensorSerial.write('\n');
-    
+    else
+    {
+        sensorSerial.write('\n');
+    }
     delay(MEASUREMENT_PERIOD);
 }

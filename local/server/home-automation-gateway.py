@@ -15,8 +15,8 @@ def hello_world():
 # used to send to remote server the data from the sensors
 @app.route('/sensors', methods=['POST'])
 def print_json():
-    print(request.json)
-    return {}
+    print(request.data)
+    return 'ok'
 
 if __name__ == '__main__':
     app.run()

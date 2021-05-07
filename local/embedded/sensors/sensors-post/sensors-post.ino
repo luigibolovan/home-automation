@@ -13,8 +13,8 @@
 #include <WiFiClient.h>
 
 
-#define WIFI_SSID     
-#define WIFI_PASSWORD 
+#define WIFI_SSID     "Mari"
+#define WIFI_PASSWORD "numergenetul"
 #define LOCAL_GW_IP   "192.168.1.10:5000"
 #define POST_PERIOD   5000
 
@@ -53,11 +53,9 @@ void setup() {
      *************** INITIAL SETUP ****************
      *********************************************/
     Serial.begin(9600);
-    pinMode(LED_BUILTIN, OUTPUT);
     for (char t = 4; t > 0; t--) 
     {
         Serial.printf("Wait %d...\n", t);
-        Serial.flush();
         delay(1000);
     }
     WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
@@ -80,20 +78,22 @@ void loop() {
      **************** DECLARATIONS ****************
      *********************************************/
     char        readByte;
-    String      sensorData = "";
+    String      sensorData = "{\"text\":\"abracadabra2\"}";
 
     /*********************************************
      **************** CODE EXECUTION *************
      *********************************************/
-    while (Serial.available() > 0) 
-    {
-        readByte = Serial.read();
-        sensorData.concat(readByte);
-        if (readByte == '\n')
-        {
-            digitalWrite(LED_BUILTIN, LOW);   // Turn the LED on
-            postToGW(sensorData);
-            digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off
-        }
-    }
+//    while (Serial.available() > 0) 
+//    {
+//        readByte = Serial.read();
+//        sensorData.concat(readByte);
+//        if (readByte == '\n')
+//        {
+//            digitalWrite(LED_BUILTIN, LOW);   // Turn the LED on
+//            postToGW(sensorData);
+//            digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off
+//        }
+//    }
+      postToGW(sensorData);
+      delay(5000);
 }
