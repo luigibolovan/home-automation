@@ -3,7 +3,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 
-
 public class remote_data_encryption {
     public static void main(String[] args) throws Exception {
         int block_size = 16;
