@@ -18,9 +18,7 @@ public class AtmosphereService {
     }
 
     public void addAtmosphere(Atmosphere atmosphere) {
-        // decryption required
-        if (atmosphere.getDate() == null || atmosphere.getDate().equals("") ||
-            atmosphere.getHumidity() == null || atmosphere.getHumidity().equals("") ||
+        if (atmosphere.getHumidity() == null || atmosphere.getHumidity().equals("") ||
             atmosphere.getTemperature() == null || atmosphere.getTemperature().equals("") ||
             atmosphere.getMethaneGasConcentration() == null || atmosphere.getMethaneGasConcentration().equals("")) {
             // nok
@@ -31,12 +29,10 @@ public class AtmosphereService {
     }
 
     public List<Atmosphere> getAllAtmospheres() {
-        // encryption required
         return mAtmDao.findAll();
     }
 
     public Atmosphere getCurrentAtmosphere() {
-        // encryption required
         return mAtmDao.findFirstByOrderByIdDesc();
     }
 

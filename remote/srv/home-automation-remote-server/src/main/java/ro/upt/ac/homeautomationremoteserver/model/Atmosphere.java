@@ -10,31 +10,27 @@ public class Atmosphere {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long    id;
-    private String  date;
     private String  temperature;
     private String  humidity;
     private String  methaneGasConcentration;
 
     public Atmosphere(Long id,
-                      @JsonProperty("Date")String date,
-                      @JsonProperty("Temperature")int temperature,
-                      @JsonProperty("Humidity")int humidity,
-                      @JsonProperty("MethaneGasConcentration")int methaneGasConcentration) {
-        this.id = id;
-        this.date = date;
-        this.temperature = String.valueOf(temperature);
-        this.humidity = String.valueOf(humidity);
-        this.methaneGasConcentration = String.valueOf(methaneGasConcentration);
+                      @JsonProperty("Temperature")String temperature,
+                      @JsonProperty("Humidity")String humidity,
+                      @JsonProperty("MethaneGasConcentration")String methaneGasConcentration) {
+        this.id                         = id;
+        this.temperature                = temperature;
+        this.humidity                   = humidity;
+        this.methaneGasConcentration    = methaneGasConcentration;
     }
 
     public Atmosphere() {
     }
 
-    public Atmosphere(String date, int temperature, int humidity, int methaneGasConcentration) {
-        this.date = date;
-        this.temperature = String.valueOf(temperature);
-        this.humidity = String.valueOf(humidity);
-        this.methaneGasConcentration = String.valueOf(methaneGasConcentration);
+    public Atmosphere(String temperature, String humidity, String methaneGasConcentration) {
+        this.temperature             = temperature;
+        this.humidity                = humidity;
+        this.methaneGasConcentration = methaneGasConcentration;
     }
 
     @Id
@@ -44,10 +40,6 @@ public class Atmosphere {
 
     public void setId(Long uid) {
         this.id = uid;
-    }
-
-    public String getDate() {
-        return date;
     }
 
     public String getHumidity() {
@@ -60,10 +52,6 @@ public class Atmosphere {
 
     public String getMethaneGasConcentration() {
         return methaneGasConcentration;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public void setHumidity(String humidity) {
