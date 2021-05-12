@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">home-automation-app</string>
     <string name="app_title">Smart home</string>
+    <string name="login_static">Login</string>
+    <string name="signup_static">Register</string>
+    <string name="dashboard_static">Dashboard</string>
+    <string name="stats_static">Stats</string>
+    <string name="info_control_static">Info and control</string>
+    <string name="lights_static">Lights</string>
+    <string name="doorlock_static">Door lock</string>
+    <string name="air_humidity_static">Air</string>
+    <string name="methane_gas_static">Gas</string>
+    <string name="login_google_static">Login with</string>
+    <string name="mail_static">E-mail</string>
+    <string name="pwd_static">Password</string>
+    <string name="signup_ask_static">No account? Create an account here.</string>
 </resources>

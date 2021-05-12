@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_login_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_login_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_login_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <ImageView
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/in_app_logo"
+        app:layout_constraintBottom_toTopOf="@id/gl_login_logo"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        tools:ignore="ContentDescription" />
+
+
+    <RelativeLayout
+        android:layout_width=" "
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintLeft_toLeftOf="@id/gl_login_left"
+        app:layout_constraintRight_toRightOf="@id/gl_login_right"
+        app:layout_constraintTop_toBottomOf="@id/gl_login_logo">
+
+        <TextView
+            android:id="@+id/tv_login_login_static"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/login_static"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_login_mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_login_login_static"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/input_field"
+            android:hint="@string/mail_static"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/et_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_login_mail"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_field"
+            android:hint="@string/pwd_static"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <Button
+            android:id="@+id/btn_login_submit_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_login_password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/login_btn"
+            android:padding="16dp"
+            android:text="@string/login_static"
+            android:textColor="@color/white" />
+
+        <RelativeLayout
+            android:id="@+id/rl_login_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_login_submit_data"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tv_login_google_static"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/login_google_static"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/tv_login_google_static"
+                android:src="@drawable/google" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_login_signup_clickable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_login_google"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/signup_ask_static"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

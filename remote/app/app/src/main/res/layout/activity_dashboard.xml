@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DashboardActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_upper_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_app_half"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_app_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_upper_info_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_half"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_left_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_dashboard_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
+
+    <RelativeLayout
+        android:layout_width=" "
+        android:layout_height=" "
+        app:layout_constraintBottom_toTopOf="@id/gl_dashboard_upper_info"
+        app:layout_constraintLeft_toRightOf="@id/gl_dashboard_left_0"
+        app:layout_constraintRight_toLeftOf="@id/gl_dashboard_right_1"
+        app:layout_constraintTop_toBottomOf="@id/gl_dashboard_upper_info_0">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/in_app_logo" />
+
+        <ImageView
+            android:id="@+id/iv_dashboard_user_photo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/user" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/dashboard_static"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/gl_dashboard_app_title"
+        app:layout_constraintLeft_toRightOf="@id/gl_dashboard_left" />
+
+    <TextView
+        android:id="@+id/tv_dashboard_stats_static"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/stats_static"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/gl_dashboard_app_stats"
+        app:layout_constraintLeft_toRightOf="@id/gl_dashboard_left" />
+
+    <RelativeLayout
+        android:layout_width=" "
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toRightOf="@id/gl_dashboard_left"
+        app:layout_constraintRight_toLeftOf="@id/gl_dashboard_half"
+        app:layout_constraintTop_toBottomOf="@id/gl_dashboard_app_stats">
+
+        <RelativeLayout
+            android:id="@+id/rl_dashboard_stats_lights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/iv_dasboard_stats_lights"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/lights" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@id/iv_dasboard_stats_lights"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/lights_static"
+                android:textColor="@color/gray" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dashboard_stats_air_humidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_dashboard_stats_lights"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/iv_dasboard_stats_air_humidity"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/air" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@id/iv_dasboard_stats_air_humidity"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/air_humidity_static"
+                android:textColor="@color/gray" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width=" "
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toRightOf="@id/gl_dashboard_half"
+        app:layout_constraintRight_toLeftOf="@id/gl_dashboard_right"
+        app:layout_constraintTop_toBottomOf="@id/gl_dashboard_app_stats">
+
+        <RelativeLayout
+            android:id="@+id/rl_dashboard_stats_doorlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/iv_dasboard_stats_doorlock"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/doorlock" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@id/iv_dasboard_stats_doorlock"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/doorlock_static"
+                android:textColor="@color/gray" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dashboard_stats_methane_gas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_dashboard_stats_doorlock"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/iv_dasboard_stats_methane_gas"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/gas" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@id/iv_dasboard_stats_methane_gas"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/methane_gas_static"
+                android:textColor="@color/gray" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width=" "
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/gl_dashboard_left"
+        app:layout_constraintRight_toLeftOf="@id/gl_dashboard_right"
+        app:layout_constraintTop_toBottomOf="@id/gl_dashboard_app_half">
+
+        <TextView
+            android:id="@+id/tv_dashboard_info_and_control_static"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/info_control_static"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/rl_dashboard_info_and_control_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_dashboard_info_and_control_static"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Temperature" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text="0 C" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dashboard_info_and_control_humidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_dashboard_info_and_control_temperature"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Humidity" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text="0 %" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dashboard_info_and_control_methane_gas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_dashboard_info_and_control_humidity"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Methane gas concentration" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text="0 ppm" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dashboard_info_and_control_door_lock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_dashboard_info_and_control_methane_gas"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/montserrat"
+                android:text="Door lock" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:id="@+id/switch_doorLock"
+                android:thumb="@drawable/lock"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dashboard_info_and_control_lights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_dashboard_info_and_control_door_lock"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button_stroke_gray"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/montserrat"
+                android:text="Door lock" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:id="@+id/switch_lights"
+                android:thumb="@drawable/lightbulb"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
