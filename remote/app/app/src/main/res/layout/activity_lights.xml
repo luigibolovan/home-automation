@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DoorLockActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_lights_upper_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_lights_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_lights_upper_info_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_lights_left_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_lights_right_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_lights_down_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_lights_half"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+
+    <RelativeLayout
+        android:layout_width=" "
+        android:layout_height=" "
+        app:layout_constraintBottom_toTopOf="@id/gl_lights_upper_info"
+        app:layout_constraintLeft_toRightOf="@id/gl_lights_left_0"
+        app:layout_constraintRight_toLeftOf="@id/gl_lights_right_1"
+        app:layout_constraintTop_toBottomOf="@id/gl_lights_upper_info_0">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/in_app_logo" />
+
+        <ImageView
+            android:id="@+id/iv_lights_user_photo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/user" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/lights_static"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@id/gl_lights_left"
+        app:layout_constraintTop_toBottomOf="@id/gl_lights_upper_info" />
+
+    <RelativeLayout
+        android:layout_width=" "
+        android:layout_height=" "
+        app:layout_constraintBottom_toTopOf="@id/gl_lights_half"
+        app:layout_constraintLeft_toRightOf="@id/gl_lights_left_0"
+        app:layout_constraintRight_toLeftOf="@id/gl_lights_right_1"
+        app:layout_constraintTop_toBottomOf="@id/gl_lights_upper_info">
+
+        <ImageView
+            android:id="@+id/iv_lights_power_btn"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/off_button" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_lights_stats"
+        android:layout_width=" "
+        android:layout_height=" "
+        app:layout_constraintBottom_toTopOf="@id/gl_lights_down_1"
+        app:layout_constraintLeft_toRightOf="@id/gl_lights_left_0"
+        app:layout_constraintRight_toLeftOf="@id/gl_lights_right_1"
+        app:layout_constraintTop_toBottomOf="@id/gl_lights_half" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
