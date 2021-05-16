@@ -3,17 +3,27 @@ package ro.upt.ac.home.automation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
 public class DashboardActivity extends AppCompatActivity {
-    RelativeLayout mLightStats;
-    RelativeLayout mAirStats;
-    RelativeLayout mDoorLockStats;
-    RelativeLayout mGasStats;
-    ImageView mUserProfile;
+    private RelativeLayout mLightStats;
+    private RelativeLayout mAirStats;
+    private RelativeLayout mDoorLockStats;
+    private RelativeLayout mGasStats;
+    private ImageView      mUserProfile;
+
+    private FirebaseAuth   mAuthService;
 
 
     @Override
@@ -25,6 +35,40 @@ public class DashboardActivity extends AppCompatActivity {
         mDoorLockStats  = findViewById(R.id.rl_dashboard_stats_doorlock);
         mGasStats       = findViewById(R.id.rl_dashboard_stats_methane_gas);
         mUserProfile    = findViewById(R.id.iv_dashboard_user_photo);
+
+        mAuthService = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        setUserProfilePicture();
+    }
+
+    private void setUserProfilePicture() {
+        FirebaseUser user = mAuthService.getCurrentUser();
+        if (user == null) {
+            finish();
+        } else {
+            String userPhotoURL = user.getPhotoUrl().toString();
+            Thread userPhotoThread = new Thread(() -> {
+                InputStream is = null;
+                try {
+                    is = (InputStream) new URL(userPhotoURL).getContent();
+                    Drawable photo = Drawable.createFromStream(is, "userprofilephoto");
+                    mUserProfile.setImageDrawable(photo);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            userPhotoThread.start();
+            try {
+                userPhotoThread.join(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

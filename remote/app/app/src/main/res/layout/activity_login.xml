@@ -132,6 +132,17 @@
             android:textColor="@color/black"
             android:textSize="12sp" />
 
+        <TextView
+            android:id="@+id/tv_login_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_login_signup_clickable"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/crimsonred"
+            android:textSize="12sp" />
+
 
     </RelativeLayout>
 

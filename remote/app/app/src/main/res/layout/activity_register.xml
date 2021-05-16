@@ -99,6 +99,18 @@
             android:text="@string/signup_static"
             android:textColor="@color/white" />
 
+        <TextView
+            android:id="@+id/tv_register_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_signup_submit_data"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/crimsonred"
+            android:textSize="12sp" />
+
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
