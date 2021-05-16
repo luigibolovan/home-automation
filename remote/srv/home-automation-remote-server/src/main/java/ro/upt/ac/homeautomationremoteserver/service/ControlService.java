@@ -3,6 +3,7 @@ package ro.upt.ac.homeautomationremoteserver.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.upt.ac.homeautomationremoteserver.dao.ControlDao;
+import ro.upt.ac.homeautomationremoteserver.model.Atmosphere;
 import ro.upt.ac.homeautomationremoteserver.model.Control;
 
 import java.util.List;
@@ -29,6 +30,10 @@ public class ControlService {
 
     public List<Control> getAllControls() {
         return mControlDao.findAll();
+    }
+
+    public List<Control> getLatest10Controls() {
+        return mControlDao.findFirst10ByOrderByIdDesc();
     }
 
     public Control getCurrentControl() {

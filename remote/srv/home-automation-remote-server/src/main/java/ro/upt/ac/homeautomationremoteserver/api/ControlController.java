@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ro.upt.ac.homeautomationremoteserver.model.Atmosphere;
 import ro.upt.ac.homeautomationremoteserver.model.Control;
 import ro.upt.ac.homeautomationremoteserver.service.ControlService;
 
@@ -32,5 +33,10 @@ public class ControlController {
     @GetMapping("/control/latest")
     public Control getCurrentControl() {
         return mCtrlService.getCurrentControl();
+    }
+
+    @GetMapping("/control/latest10")
+    public List<Control> getLatest10Controls() {
+        return mCtrlService.getLatest10Controls();
     }
 }
