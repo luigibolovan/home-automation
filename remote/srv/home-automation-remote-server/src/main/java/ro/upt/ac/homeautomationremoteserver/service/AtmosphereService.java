@@ -32,6 +32,10 @@ public class AtmosphereService {
         return mAtmDao.findAll();
     }
 
+    public List<Atmosphere> getLatest10Atmospheres() {
+        return mAtmDao.findFirst10ByOrderByIdDesc();
+    }
+
     public Atmosphere getCurrentAtmosphere() {
         return mAtmDao.findFirstByOrderByIdDesc();
     }

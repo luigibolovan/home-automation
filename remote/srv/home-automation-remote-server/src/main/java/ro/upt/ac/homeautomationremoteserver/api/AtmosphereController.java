@@ -33,4 +33,9 @@ public class AtmosphereController {
     public Atmosphere getCurrentAtmosphere() {
         return mAtmService.getCurrentAtmosphere();
     }
+
+    @GetMapping("/atmosphere/latest10")
+    public List<Atmosphere> getLatest10Atmoshperes() {
+        return mAtmService.getLatest10Atmospheres();
+    }
 }
