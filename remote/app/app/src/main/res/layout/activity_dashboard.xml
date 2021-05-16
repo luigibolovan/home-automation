@@ -77,8 +77,8 @@
         app:layout_constraintGuide_percent="1" />
 
     <RelativeLayout
-        android:layout_width=" "
-        android:layout_height=" "
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/gl_dashboard_upper_info"
         app:layout_constraintLeft_toRightOf="@id/gl_dashboard_left_0"
         app:layout_constraintRight_toLeftOf="@id/gl_dashboard_right_1"
@@ -128,7 +128,7 @@
         app:layout_constraintLeft_toRightOf="@id/gl_dashboard_left" />
 
     <RelativeLayout
-        android:layout_width=" "
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintLeft_toRightOf="@id/gl_dashboard_left"
@@ -202,7 +202,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width=" "
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintLeft_toRightOf="@id/gl_dashboard_half"
@@ -274,7 +274,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width=" "
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/gl_dashboard_left"
         app:layout_constraintRight_toLeftOf="@id/gl_dashboard_right"
@@ -305,7 +305,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Temperature" />
+                android:text="@string/temperature_static" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -331,7 +331,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Humidity" />
+                android:text="@string/humidity_static" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -357,7 +357,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Methane gas concentration" />
+                android:text="@string/methane_gas_concentration_static" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -384,7 +384,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/montserrat"
-                android:text="Door lock" />
+                android:text="@string/doorlock_static" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -414,7 +414,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/montserrat"
-                android:text="Door lock" />
+                android:text="@string/lights_static" />
 
             <Switch
                 android:layout_width="wrap_content"

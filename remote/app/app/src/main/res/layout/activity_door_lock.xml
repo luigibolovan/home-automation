@@ -57,14 +57,15 @@
 
 
     <RelativeLayout
-        android:layout_width=" "
-        android:layout_height=" "
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/gl_doorlock_upper_info"
         app:layout_constraintLeft_toRightOf="@id/gl_doorlock_left_0"
         app:layout_constraintRight_toLeftOf="@id/gl_doorlock_right_1"
         app:layout_constraintTop_toBottomOf="@id/gl_doorlock_upper_info_0">
 
         <ImageView
+            android:id="@+id/iv_doorlock_app_logo"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_centerVertical="true"
@@ -94,8 +95,8 @@
         app:layout_constraintTop_toBottomOf="@id/gl_doorlock_upper_info" />
 
     <RelativeLayout
-        android:layout_width=" "
-        android:layout_height=" "
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/gl_doorlock_half"
         app:layout_constraintLeft_toRightOf="@id/gl_doorlock_left_0"
         app:layout_constraintRight_toLeftOf="@id/gl_doorlock_right_1"
@@ -112,8 +113,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_doorlock_stats"
-        android:layout_width=" "
-        android:layout_height=" "
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/gl_doorlock_down_1"
         app:layout_constraintLeft_toRightOf="@id/gl_doorlock_left_0"
         app:layout_constraintRight_toLeftOf="@id/gl_doorlock_right_1"

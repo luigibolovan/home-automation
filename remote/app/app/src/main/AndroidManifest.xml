@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Homeautomationapp">
-        <activity android:name=".DoorLockActivity"></activity>
+        <activity android:name=".UserActivity"></activity>
+        <activity android:name=".GasActivity" />
+        <activity android:name=".AirActivity" />
+        <activity android:name=".DoorLockActivity" />
+        <activity android:name=".LightsActivity" />
         <activity android:name=".DashboardActivity" />
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".LoadActivity">
             <intent-filter>

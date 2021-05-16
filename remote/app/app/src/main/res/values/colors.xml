@@ -10,4 +10,5 @@
     <color name="gray">	#D3D3D3</color>
     <color name="deepskyblue">#00BFFF</color>
     <color name="dodgerblue">#1e90ff</color>
+    <color name="crimsonred">#DC143C</color>
 </resources>
