@@ -72,7 +72,7 @@
             android:layout_marginStart="16dp"
             android:src="@drawable/in_app_logo" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_doorlock_user_photo"
             android:layout_width="32dp"
             android:layout_height="32dp"
@@ -106,8 +106,7 @@
             android:id="@+id/iv_doorlock_power_btn"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/off_button" />
+            android:layout_centerInParent="true" />
 
     </RelativeLayout>
 

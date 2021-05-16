@@ -75,7 +75,7 @@
         app:layout_constraintRight_toLeftOf="@id/gl_user_right"
         app:layout_constraintTop_toBottomOf="@id/gl_user_top">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_user_user_photo"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -101,14 +101,13 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/montserrat"
-            android:text="info"
             android:textColor="@color/black" />
 
     </RelativeLayout>
 
 
     <Button
-        android:id="@+id/btn_login_submit_data"
+        android:id="@+id/btn_user_user_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

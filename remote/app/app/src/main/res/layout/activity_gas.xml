@@ -85,7 +85,7 @@
             android:layout_marginStart="16dp"
             android:src="@drawable/in_app_logo" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_gas_user_photo"
             android:layout_width="32dp"
             android:layout_height="32dp"

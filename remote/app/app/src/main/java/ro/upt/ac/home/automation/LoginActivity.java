@@ -5,8 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -26,6 +29,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import static android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+import static android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS;
+
 public class LoginActivity extends AppCompatActivity {
     private TextView        mRegisterLink;
     private Button          mEmailLoginButton;
@@ -44,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
         mRegisterLink       = findViewById(R.id.tv_login_signup_clickable);
         mEmailLoginButton   = findViewById(R.id.btn_login_submit_data);
         mGoogleLoginButton  = findViewById(R.id.rl_login_google);

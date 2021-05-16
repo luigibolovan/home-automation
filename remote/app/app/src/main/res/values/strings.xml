@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">home-automation-app</string>
+    <string name="app_name">Smart home</string>
     <string name="app_title">Smart home</string>
     <string name="login_static">Login</string>
     <string name="logout_static">Logout</string>

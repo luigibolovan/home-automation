@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
         mEmailUserToBe   = findViewById(R.id.et_signup_mail);
         mPwdUserToBe     = findViewById(R.id.et_signup_password);
         mRegisterBtn     = findViewById(R.id.btn_signup_submit_data);
