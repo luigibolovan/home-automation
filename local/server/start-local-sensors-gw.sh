@@ -10,9 +10,14 @@ source virtualenv/bin/activate
 
 echo "[SETUP] Fetching Flask..."
 pip install flask > /dev/null
+echo "[SETUP] Fetching requests..."
+pip install requests > /dev/null
+echo "[SETUP] Fetching pycryptodome..."
+pip install pycryptodome > /dev/null
 echo "[SETUP] Flask installed"
 fi
 
 echo "Starting server..."
-export FLASK_APP=home-automation-gateway.py
-flask run --host=0.0.0.0
+source virtualenv/bin/activate
+export FLASK_APP=home-automation-sensors-gateway.py
+flask run --host=0.0.0.0 --port=1310

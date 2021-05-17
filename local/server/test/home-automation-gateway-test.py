@@ -4,8 +4,6 @@ import json
 
 app = Flask(__name__)
 
-plm = 0
-
 @app.route('/')
 def hello_world():
     return "use route '/sensors' to post temperature, humidity rate and methane gase ppm <br/> \
@@ -15,7 +13,7 @@ def hello_world():
 # used to send to remote server the data from the sensors
 @app.route('/sensors', methods=['POST'])
 def print_json():
-    print(request.data)
+    print(request.json)
     return 'ok'
 
 if __name__ == '__main__':

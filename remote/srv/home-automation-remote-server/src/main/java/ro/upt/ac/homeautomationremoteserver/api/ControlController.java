@@ -21,7 +21,7 @@ public class ControlController {
     }
 
     @PostMapping("/control")
-    public void addControl(@RequestBody Control ctrl) {
+    public void addControl(Control ctrl) {
         mCtrlService.addControl(ctrl);
     }
 
