@@ -98,9 +98,9 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
-            app:civ_border_width="2dp"
+            android:src="@drawable/user"
             app:civ_border_color="@color/gray"
-            android:src="@drawable/user" />
+            app:civ_border_width="2dp" />
 
     </RelativeLayout>
 
@@ -310,6 +310,7 @@
                 android:text="@string/temperature_static" />
 
             <TextView
+                android:id="@+id/tv_dashboard_temperature_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -336,6 +337,7 @@
                 android:text="@string/humidity_static" />
 
             <TextView
+                android:id="@+id/tv_dashboard_humidity_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -362,6 +364,7 @@
                 android:text="@string/methane_gas_concentration_static" />
 
             <TextView
+                android:id="@+id/tv_dashboard_methane_gas_concentration_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -383,20 +386,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/doorlock_static" />
 
             <Switch
+                android:id="@+id/switch_doorLock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:id="@+id/switch_doorLock"
-                android:thumb="@drawable/lock"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
+                android:thumb="@drawable/lock"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         </RelativeLayout>
@@ -413,20 +416,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/lights_static" />
 
             <Switch
+                android:id="@+id/switch_lights"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:id="@+id/switch_lights"
-                android:thumb="@drawable/lightbulb"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
+                android:thumb="@drawable/lightbulb"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         </RelativeLayout>

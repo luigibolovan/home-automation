@@ -9,7 +9,9 @@ public class remote_data_decryption {
         int block_size = 16;
         String key = "A0A94477CA492BF4EA54C8B2A0617449";
         String iv = "C196C6DB0B0EDC093E4C5F513C75B75A";
-        String cipherText = "tAkjHTf2nftWecfC0iMYD66YyPGeTWXT8L9G6hCcu1U=";
+        String cipherText1 = "tAkjHTf2nftWecfC0iMYD66YyPGeTWXT8L9G6hCcu1U=";
+        String cipherText2 = "Kv/zLr8xWG2oZBBjFyQZaXi/k4g1rSRnKmA4P742gxY=";
+        String cipherText3 = "yzjUyIVMHBDiK3ETpucVGyj8AP4puQ1r0pk4sufUGek=";
         IvParameterSpec ivSpec = new IvParameterSpec(hexStringToByteArray(iv));
         byte[] keyBarray = hexStringToByteArray(key);
         SecretKeySpec keySpec = new SecretKeySpec (keyBarray, 0, keyBarray.length, "AES");
@@ -18,8 +20,12 @@ public class remote_data_decryption {
 
         Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
         cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
-        byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(cipherText));
-        System.out.println(new String(plainText));
+        byte[] plainText1 = cipher.doFinal(Base64.getDecoder().decode(cipherText1));
+        byte[] plainText2 = cipher.doFinal(Base64.getDecoder().decode(cipherText2));
+        byte[] plainText3 = cipher.doFinal(Base64.getDecoder().decode(cipherText3));
+        System.out.println(new String(plainText1));
+        System.out.println(new String(plainText2));
+        System.out.println(new String(plainText3));
     }
 
     public static byte[] hexStringToByteArray(String s) {

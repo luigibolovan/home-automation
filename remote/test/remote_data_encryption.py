@@ -17,10 +17,15 @@ methane_gas_concentration = str(335) + '_' + str(current_date.date()) + '_' + st
 door_lock = str(1) + '_' + str(current_date.date()) + '_' + str(current_date.time())
 lights = str(1) + '_' + str(current_date.date()) + '_' + str(current_date.time())
 
+# renew the cipher in order to be able to decrypt easily...
 cipher = AES.new(key, AES.MODE_CBC, iv)
 print(base64.b64encode(cipher.encrypt(pad(temperature).encode())))
+cipher = AES.new(key, AES.MODE_CBC, iv)
 print(base64.b64encode(cipher.encrypt(pad(humidity).encode())))
+cipher = AES.new(key, AES.MODE_CBC, iv)
 print(base64.b64encode(cipher.encrypt(pad(methane_gas_concentration).encode())))
 print('------------------------------------------------------------------------')
+cipher = AES.new(key, AES.MODE_CBC, iv)
 print(base64.b64encode(cipher.encrypt(pad(door_lock).encode())))
+cipher = AES.new(key, AES.MODE_CBC, iv)
 print(base64.b64encode(cipher.encrypt(pad(lights).encode())))

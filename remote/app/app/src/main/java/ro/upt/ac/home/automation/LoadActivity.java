@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoadActivity extends AppCompatActivity {
     private FirebaseAuth mAuthService;
 
-    private final static int LOADING_TIME_VALUE    = 3000;
+    private final static int LOADING_TIME_VALUE         = 3000;
     private final CountDownTimer mDummyLoadingTimer     = new CountDownTimer(LOADING_TIME_VALUE, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
@@ -34,11 +34,7 @@ public class LoadActivity extends AppCompatActivity {
     };
 
     private boolean isAuthenticated() {
-        if (mAuthService.getCurrentUser() == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return mAuthService.getCurrentUser() != null;
     }
 
 
