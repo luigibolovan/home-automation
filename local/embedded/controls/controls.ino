@@ -11,8 +11,8 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 
-#define WIFI_SSID     "Mari"
-#define WIFI_PASSWORD "numergenetul"
+#define WIFI_SSID     ""
+#define WIFI_PASSWORD ""
 #define LOCAL_GW_IP   "192.168.1.10:2305"
 #define GET_PERIOD    5000
 

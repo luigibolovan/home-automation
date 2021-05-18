@@ -15,8 +15,8 @@
 #include <ArduinoJson.h>
 
 
-#define WIFI_SSID     "Mari"
-#define WIFI_PASSWORD "numergenetul"
+#define WIFI_SSID     ""
+#define WIFI_PASSWORD ""
 #define LOCAL_GW_IP   "192.168.1.10:1310"
 #define POST_PERIOD   5000
 
