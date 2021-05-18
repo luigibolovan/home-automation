@@ -62,7 +62,7 @@ def post_sensors_data():
     sensors_json = request.json
     encrypted_json = encrypt_sensors_data(sensors_json)
     url = remote_server + "atmosphere/"
-    requests.post(url, data = encrypted_json)
+    requests.post(url, json = encrypted_json)
     # print(encrypted_json)
     return ('', 204)
 

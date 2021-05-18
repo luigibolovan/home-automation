@@ -49,32 +49,83 @@ public class DashboardActivity extends AppCompatActivity {
     private RelativeLayout mAirStats;
     private RelativeLayout mDoorLockStats;
     private RelativeLayout mGasStats;
-    private ImageView      mUserProfile;
-    private TextView       mTemperatureInfo;
-    private TextView       mHumidityInfo;
-    private TextView       mMethaneGasInfo;
-    private Switch         mDoorLockSwitch;
-    private Switch         mLightsSwitch;
+    private ImageView mUserProfile;
+    private TextView mTemperatureInfo;
+    private TextView mHumidityInfo;
+    private TextView mMethaneGasInfo;
+    private Switch mDoorLockSwitch;
+    private Switch mLightsSwitch;
+    private String mCurrentLightsValue;
+    private String mCurrentDoorLockValue;
+    private CompoundButton.OnCheckedChangeListener lightsListener;
+    private CompoundButton.OnCheckedChangeListener doorlockListener;
 
-    private TextView       mTemperatureStatic;
+    private TextView mTemperatureStatic;
 
-    private FirebaseAuth   mAuthService;
+    private FirebaseAuth mAuthService;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         getWindow().setNavigationBarColor(Color.TRANSPARENT);
-        mLightStats      = findViewById(R.id.rl_dashboard_stats_lights);
-        mAirStats        = findViewById(R.id.rl_dashboard_stats_air_humidity);
-        mDoorLockStats   = findViewById(R.id.rl_dashboard_stats_doorlock);
-        mGasStats        = findViewById(R.id.rl_dashboard_stats_methane_gas);
-        mUserProfile     = findViewById(R.id.iv_dashboard_user_photo);
+        mLightStats = findViewById(R.id.rl_dashboard_stats_lights);
+        mAirStats = findViewById(R.id.rl_dashboard_stats_air_humidity);
+        mDoorLockStats = findViewById(R.id.rl_dashboard_stats_doorlock);
+        mGasStats = findViewById(R.id.rl_dashboard_stats_methane_gas);
+        mUserProfile = findViewById(R.id.iv_dashboard_user_photo);
         mTemperatureInfo = findViewById(R.id.tv_dashboard_temperature_info);
-        mHumidityInfo    = findViewById(R.id.tv_dashboard_humidity_info);
-        mMethaneGasInfo  = findViewById(R.id.tv_dashboard_methane_gas_concentration_info);
-        mDoorLockSwitch  = findViewById(R.id.switch_doorLock);
-        mLightsSwitch    = findViewById(R.id.switch_lights);
+        mHumidityInfo = findViewById(R.id.tv_dashboard_humidity_info);
+        mMethaneGasInfo = findViewById(R.id.tv_dashboard_methane_gas_concentration_info);
+        mDoorLockSwitch = findViewById(R.id.switch_doorLock);
+        mLightsSwitch = findViewById(R.id.switch_lights);
+
+        lightsListener = (compoundButton, b) -> {
+            if (compoundButton.getId() == mLightsSwitch.getId()) {
+                String date = LocalDate.now().toString();
+                String time = LocalTime.now().toString();
+
+                if (b) {
+                    mCurrentLightsValue = "1_" + date + "_" + time;
+                } else {
+                    mCurrentLightsValue = "0_" + date + "_" + time;
+                }
+                encryptThenSend(mCurrentLightsValue, mCurrentDoorLockValue, true, false);
+                // don't change the doorlock status and date
+
+                // then encrypt
+
+                // then do for door lock as well
+
+                // then do charts
+
+                // then do notifications(maybe last thing to do; hardware awaits as well to be done)
+            }
+        };
+
+        doorlockListener = (compoundButton, b) -> {
+            if (compoundButton.getId() == mDoorLockSwitch.getId()) {
+                String date = LocalDate.now().toString();
+                String time = LocalTime.now().toString();
+
+                if (b) {
+                    mCurrentDoorLockValue = "1_" + date + "_" + time;
+                } else {
+                    mCurrentDoorLockValue = "0_" + date + "_" + time;
+                }
+                encryptThenSend(mCurrentLightsValue, mCurrentDoorLockValue, false, true);
+                // don't change the doorlock status and date
+
+                // then encrypt
+
+                // then do for door lock as well
+
+                // then do charts
+
+                // then do notifications(maybe last thing to do; hardware awaits as well to be done)
+            }
+        };
 
 
         mTemperatureStatic = findViewById(R.id.tv_dashboard_info_and_control_static);
@@ -145,51 +196,9 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(userProfile);
         });
 
-        mLightsSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
-            if (compoundButton.getId() == mLightsSwitch.getId()) {
-                if (b) {
-                    String date = LocalDate.now().toString();
-                    String time = LocalTime.now().toString();
-                    String lights = "1_" + date + "_" + time;
+        mLightsSwitch.setOnCheckedChangeListener(lightsListener);
 
-                    RemoteServerApi rsa = ServiceBuilder.getInstance().buildService(RemoteServerApi.class);
-
-                    Call<Controls> controlCall = rsa.getControl();
-                    controlCall.enqueue(new Callback<Controls>() {
-                        @RequiresApi(api = Build.VERSION_CODES.O)
-                        @Override
-                        public void onResponse(Call<Controls> call, Response<Controls> response) {
-                            if (!response.isSuccessful()) {
-                                Toast.makeText(DashboardActivity.this, "Error code control", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Controls currentControl = response.body();
-
-                                if (currentControl == null) {
-                                    Toast.makeText(DashboardActivity.this, "Request body null - control", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    encryptThenSend(lights, currentControl.getDoorLock(), true, false);
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Controls> call, Throwable t) {
-                            Toast.makeText(DashboardActivity.this, "Something is wrong - control", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    // don't change the doorlock status and date
-
-                    // then encrypt
-
-                    // then do for door lock as well
-
-                    // then do charts
-
-                    // then do notifications(maybe last thing to do; hardware awaits as well to be done)
-
-                }
-            }
-        });
+        mDoorLockSwitch.setOnCheckedChangeListener(doorlockListener);
 
         RemoteServerApi rsa = ServiceBuilder.getInstance().buildService(RemoteServerApi.class);
 
@@ -246,12 +255,12 @@ public class DashboardActivity extends AppCompatActivity {
         String cipherLights = null;
         String cipherDoorLock = null;
 
-        String key      = "A0A94477CA492BF4EA54C8B2A0617449";
-        String iv       = "C196C6DB0B0EDC093E4C5F513C75B75A";
-        int blockSize   = 16;
+        String key = "A0A94477CA492BF4EA54C8B2A0617449";
+        String iv = "C196C6DB0B0EDC093E4C5F513C75B75A";
+        int blockSize = 16;
         IvParameterSpec ivSpec = new IvParameterSpec(hexStringToByteArray(iv));
         byte[] keyBarray = hexStringToByteArray(key);
-        SecretKeySpec keySpec = new SecretKeySpec (keyBarray, 0, keyBarray.length, "AES");
+        SecretKeySpec keySpec = new SecretKeySpec(keyBarray, 0, keyBarray.length, "AES");
         Cipher cipher = null;
         if (lightsChanged) {
             try {
@@ -259,6 +268,7 @@ public class DashboardActivity extends AppCompatActivity {
                 cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
                 byte[] cipherText = cipher.doFinal(pad(lights, blockSize).getBytes());
                 cipherLights = Base64.getEncoder().encodeToString(cipherText);
+                cipherDoorLock = doorLock;
             } catch (NoSuchAlgorithmException |
                     NoSuchPaddingException |
                     InvalidAlgorithmParameterException |
@@ -275,6 +285,7 @@ public class DashboardActivity extends AppCompatActivity {
                 cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
                 byte[] cipherText = cipher.doFinal(pad(doorLock, blockSize).getBytes());
                 cipherDoorLock = Base64.getEncoder().encodeToString(cipherText);
+                cipherLights = lights;
             } catch (NoSuchAlgorithmException |
                     NoSuchPaddingException |
                     InvalidAlgorithmParameterException |
@@ -290,6 +301,7 @@ public class DashboardActivity extends AppCompatActivity {
                 // error
             } else {
                 control = new Controls(doorLock, cipherLights);
+                mCurrentLightsValue = cipherLights;
             }
         }
 
@@ -298,24 +310,24 @@ public class DashboardActivity extends AppCompatActivity {
                 // error
             } else {
                 control = new Controls(cipherDoorLock, lights);
+                mCurrentDoorLockValue = cipherDoorLock;
             }
         }
         if (control != null) {
             RemoteServerApi rsa = ServiceBuilder.getInstance().buildService(RemoteServerApi.class);
-            Call<Void> postControls = rsa.setControl(control);
+            Call<Controls> postControls = rsa.setControl(control);
 
-            postControls.enqueue(new Callback<Void>() {
+            postControls.enqueue(new Callback<Controls>() {
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
+                public void onResponse(Call<Controls> call, Response<Controls> response) {
                     if (!response.isSuccessful()) {
                         Toast.makeText(DashboardActivity.this, "Error code control - post", Toast.LENGTH_SHORT).show();
                     } else {
-                        // request sent
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Void> call, Throwable t) {
+                public void onFailure(Call<Controls> call, Throwable t) {
                     mTemperatureStatic.setText(t.getMessage());
                 }
             });
@@ -324,22 +336,22 @@ public class DashboardActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void decryptControlAndUpdateUI(Controls control) {
-        String key  = "A0A94477CA492BF4EA54C8B2A0617449";
-        String iv   = "C196C6DB0B0EDC093E4C5F513C75B75A";
+        String key = "A0A94477CA492BF4EA54C8B2A0617449";
+        String iv = "C196C6DB0B0EDC093E4C5F513C75B75A";
 
         IvParameterSpec ivSpec = new IvParameterSpec(hexStringToByteArray(iv));
         byte[] keyBarray = hexStringToByteArray(key);
-        SecretKeySpec keySpec = new SecretKeySpec (keyBarray, 0, keyBarray.length, "AES");
+        SecretKeySpec keySpec = new SecretKeySpec(keyBarray, 0, keyBarray.length, "AES");
 
-        Cipher cipher        = null;
+        Cipher cipher = null;
         byte[] doorlockBytes = new byte[64];
-        byte[] lightsBytes   = new byte[64];
+        byte[] lightsBytes = new byte[64];
         try {
             cipher = Cipher.getInstance("AES/CBC/NoPadding");
             cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
             doorlockBytes = cipher.doFinal(Base64.getDecoder().decode(control.getDoorLock()));
             lightsBytes = cipher.doFinal(Base64.getDecoder().decode(control.getLights()));
-        }  catch (NoSuchAlgorithmException |
+        } catch (NoSuchAlgorithmException |
                 NoSuchPaddingException |
                 InvalidAlgorithmParameterException |
                 InvalidKeyException |
@@ -347,32 +359,38 @@ public class DashboardActivity extends AppCompatActivity {
                 IllegalBlockSizeException e) {
             e.printStackTrace();
         }
+        mCurrentDoorLockValue = control.getDoorLock();
+        mCurrentLightsValue   = control.getLights();
         String doorLockData = new String(doorlockBytes);
         String lightsData   = new String(lightsBytes);
 
         StringTokenizer doorlockTokenizer = new StringTokenizer(doorLockData, "_");
         StringTokenizer lightsTokenizer   = new StringTokenizer(lightsData, "_");
 
-        String doorLockValue    = doorlockTokenizer.nextToken();
-        String lightsValue      = lightsTokenizer.nextToken();
+        String doorLockValue = doorlockTokenizer.nextToken();
+        String lightsValue   = lightsTokenizer.nextToken();
 
+        mDoorLockSwitch.setOnCheckedChangeListener(null);
         mDoorLockSwitch.setChecked(doorLockValue.equals("1"));
+        mDoorLockSwitch.setOnCheckedChangeListener(doorlockListener);
+        mLightsSwitch.setOnCheckedChangeListener(null);
         mLightsSwitch.setChecked(lightsValue.equals("1"));
+        mLightsSwitch.setOnCheckedChangeListener(lightsListener);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void decryptAtmosphereAndUpdateUI(Atmosphere atmosphere) {
-        String key  = "A0A94477CA492BF4EA54C8B2A0617449";
-        String iv   = "C196C6DB0B0EDC093E4C5F513C75B75A";
+        String key = "A0A94477CA492BF4EA54C8B2A0617449";
+        String iv = "C196C6DB0B0EDC093E4C5F513C75B75A";
 
         IvParameterSpec ivSpec = new IvParameterSpec(hexStringToByteArray(iv));
         byte[] keyBarray = hexStringToByteArray(key);
-        SecretKeySpec keySpec = new SecretKeySpec (keyBarray, 0, keyBarray.length, "AES");
+        SecretKeySpec keySpec = new SecretKeySpec(keyBarray, 0, keyBarray.length, "AES");
 
-        Cipher cipher           = null;
+        Cipher cipher = null;
         byte[] temperatureBytes = new byte[64];
-        byte[] humidityBytes    = new byte[64];
-        byte[] methaneBytes     = new byte[64];
+        byte[] humidityBytes = new byte[64];
+        byte[] methaneBytes = new byte[64];
         try {
             cipher = Cipher.getInstance("AES/CBC/NoPadding");
             cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
@@ -387,16 +405,16 @@ public class DashboardActivity extends AppCompatActivity {
                 IllegalBlockSizeException e) {
             e.printStackTrace();
         }
-        String temperatureData  = new String(temperatureBytes);
-        String humidityData     = new String(humidityBytes);
-        String methaneData      = new String(methaneBytes);
+        String temperatureData = new String(temperatureBytes);
+        String humidityData = new String(humidityBytes);
+        String methaneData = new String(methaneBytes);
 
-        StringTokenizer temperatureTokenizer    = new StringTokenizer(temperatureData, "_");
-        StringTokenizer humidityTokenizer       = new StringTokenizer(humidityData, "_");
-        StringTokenizer methaneTokenizer        = new StringTokenizer(methaneData, "_");
+        StringTokenizer temperatureTokenizer = new StringTokenizer(temperatureData, "_");
+        StringTokenizer humidityTokenizer = new StringTokenizer(humidityData, "_");
+        StringTokenizer methaneTokenizer = new StringTokenizer(methaneData, "_");
 
-        String temperatureValue          = temperatureTokenizer.nextToken() + " C";
-        String humidityValue             = humidityTokenizer.nextToken() + " %";
+        String temperatureValue = temperatureTokenizer.nextToken() + " C";
+        String humidityValue = humidityTokenizer.nextToken() + " %";
         String methaneConcentrationValue = methaneTokenizer.nextToken() + " ppm";
 
         mTemperatureInfo.setText(temperatureValue);
@@ -409,16 +427,15 @@ public class DashboardActivity extends AppCompatActivity {
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2) {
             data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i+1), 16));
+                    + Character.digit(s.charAt(i + 1), 16));
         }
         return data;
     }
 
     public static String pad(String s, int BLOCK_SIZE) {
         String new_s = s;
-        for (int i = 0; i < BLOCK_SIZE - s.length() % BLOCK_SIZE; i++)
-        {
-            new_s = new_s + ((char)(BLOCK_SIZE - s.length() % BLOCK_SIZE));
+        for (int i = 0; i < BLOCK_SIZE - s.length() % BLOCK_SIZE; i++) {
+            new_s = new_s + ((char) (BLOCK_SIZE - s.length() % BLOCK_SIZE));
         }
         return new_s;
     }

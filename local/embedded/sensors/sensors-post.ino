@@ -11,12 +11,19 @@
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
+#include "DHT.h"
+#include <ArduinoJson.h>
 
 
 #define WIFI_SSID     "Mari"
 #define WIFI_PASSWORD "numergenetul"
-#define LOCAL_GW_IP   "192.168.1.10:5000"
+#define LOCAL_GW_IP   "192.168.1.10:1310"
 #define POST_PERIOD   5000
+
+#define DHT_TYPE               DHT22
+#define DHT_PIN                D1
+#define MQ4_PIN                A0
+DHT dht(DHT_PIN, DHT_TYPE);
 
 void postToGW(String data) {
     /**********************************************
@@ -68,7 +75,7 @@ void setup() {
     Serial.println();
     Serial.println("Connected to wifi");
     Serial.println(WiFi.localIP());
-    
+    dht.begin();
     delay(2000);
 }
 
@@ -77,23 +84,29 @@ void loop() {
     /**********************************************
      **************** DECLARATIONS ****************
      *********************************************/
-    char        readByte;
-    String      sensorData = "{\"text\":\"abracadabra2\"}";
+    float                   humidityRate;
+    float                   temperatureC;
+    int                     methaneConcentration;
+    StaticJsonDocument<256> jsonDoc;
+    String                  output;
 
     /*********************************************
      **************** CODE EXECUTION *************
      *********************************************/
-//    while (Serial.available() > 0) 
-//    {
-//        readByte = Serial.read();
-//        sensorData.concat(readByte);
-//        if (readByte == '\n')
-//        {
-//            digitalWrite(LED_BUILTIN, LOW);   // Turn the LED on
-//            postToGW(sensorData);
-//            digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off
-//        }
-//    }
-      postToGW(sensorData);
-      delay(5000);
+    humidityRate            = dht.readHumidity();
+    temperatureC            = dht.readTemperature();
+    methaneConcentration    = analogRead(MQ4_PIN);
+    if (isnan(humidityRate) || isnan(temperatureC))
+    {
+        Serial.println("Failed to read from DHT sensor");
+        delay(2000);
+        return;
+    }
+    jsonDoc["Temperature"]              = (int)temperatureC;
+    jsonDoc["Humidity"]                 = (int)humidityRate;
+    jsonDoc["MethaneGasConcentration"]  = methaneConcentration;
+    serializeJson(jsonDoc, output);
+    Serial.println(output);
+    postToGW(output);
+    delay(POST_PERIOD);
 }

@@ -20,8 +20,9 @@ public class AtmosphereController {
     }
 
     @PostMapping("/atmosphere")
-    public void addAtmosphere(Atmosphere atmosphere) {
+    public Atmosphere addAtmosphere(@RequestBody Atmosphere atmosphere) {
         mAtmService.addAtmosphere(atmosphere);
+        return atmosphere;
     }
 
     @GetMapping("/atmosphere")

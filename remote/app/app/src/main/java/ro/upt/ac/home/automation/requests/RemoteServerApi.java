@@ -10,18 +10,18 @@ import ro.upt.ac.home.automation.requests.model.Atmosphere;
 import ro.upt.ac.home.automation.requests.model.Controls;
 
 public interface RemoteServerApi {
-    @GET("atmosphere/latest")
+    @GET("/atmosphere/latest")
     Call<Atmosphere> getAtmosphere();
 
     @GET("/atmosphere/latest10")
     Call<List<Atmosphere>> getAtmospheres();
 
-    @GET("control/latest")
+    @GET("/control/latest")
     Call<Controls> getControl();
 
-    @GET("control/latest10")
+    @GET("/control/latest10")
     Call<List<Controls>> getControls();
 
-    @POST("control")
-    Call<Void> setControl(@Body Controls control);
+    @POST("/control")
+    Call<Controls> setControl(@Body Controls control);
 }

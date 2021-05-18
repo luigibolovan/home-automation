@@ -1,15 +1,9 @@
 package ro.upt.ac.home.automation.requests.model;
 
 public class Controls {
-    private long id;
-
     public Controls(String doorLock, String lights) {
         DoorLock = doorLock;
         Lights = lights;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getDoorLock() {
@@ -18,6 +12,14 @@ public class Controls {
 
     public String getLights() {
         return Lights;
+    }
+
+    public void setDoorLock(String doorLock) {
+        DoorLock = doorLock;
+    }
+
+    public void setLights(String lights) {
+        Lights = lights;
     }
 
     private String DoorLock;
