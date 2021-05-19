@@ -49,13 +49,11 @@ public class DoorLockActivity extends AppCompatActivity {
     private ImageView       mUserPhoto;
     private ImageView       mDashboard;
     private RecyclerView    mDoorlockRecyclerView;
+    private FirebaseAuth    mAuthService;
 
-    private FirebaseAuth mAuthService;
-
-    private static final int POWER_ON                    = 1;
-    private static final int POWER_OFF                   = 0;
-    private int SWITCH_VALUE                             = POWER_OFF;
-    public static final String SWITCH_DOORLOCK_VALUE_KEY = "SWITCH_VALUE_DOOR_LOCK";
+    private static final int POWER_ON  = 1;
+    private static final int POWER_OFF = 0;
+    private int SWITCH_VALUE           = POWER_OFF;
 
     private Controls       mLatestControl;
     private List<DataUnit> listOfDoorlocks;
@@ -203,9 +201,15 @@ public class DoorLockActivity extends AppCompatActivity {
         mDashboard.setOnClickListener(view -> {
             Intent dashboardIntent = new Intent(DoorLockActivity.this, DashboardActivity.class);
             startActivity(dashboardIntent);
+            finish();
         });
+    }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent dashboardIntent = new Intent(DoorLockActivity.this, DashboardActivity.class);
+        startActivity(dashboardIntent);
+        finish();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

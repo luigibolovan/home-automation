@@ -24,6 +24,18 @@ public class DataUnit {
         return timeTokenizer.nextToken();
     }
 
+    public void setValue(int value) {
+        this.mValue = value;
+    }
+
+    public void setDate(String date) {
+        this.mDate = date;
+    }
+
+    public void setTime(String time) {
+        this.mTime = time;
+    }
+
     private int     mValue;
     private String  mDate;
     private String  mTime;

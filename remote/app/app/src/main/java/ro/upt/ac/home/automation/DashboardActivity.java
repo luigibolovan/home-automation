@@ -153,21 +153,25 @@ public class DashboardActivity extends AppCompatActivity {
         mLightStats.setOnClickListener(view -> {
             Intent lightsStatsIntent = new Intent(DashboardActivity.this, LightsActivity.class);
             startActivity(lightsStatsIntent);
+            finish();
         });
 
         mAirStats.setOnClickListener(view -> {
             Intent airStatsIntent = new Intent(DashboardActivity.this, AirActivity.class);
             startActivity(airStatsIntent);
+            finish();
         });
 
         mDoorLockStats.setOnClickListener(view -> {
             Intent doorlockIntent = new Intent(DashboardActivity.this, DoorLockActivity.class);
             startActivity(doorlockIntent);
+            finish();
         });
 
         mGasStats.setOnClickListener(view -> {
             Intent gasStatsIntent = new Intent(DashboardActivity.this, GasActivity.class);
             startActivity(gasStatsIntent);
+            finish();
         });
 
         mUserProfile.setOnClickListener(view -> {
@@ -392,7 +396,7 @@ public class DashboardActivity extends AppCompatActivity {
         StringTokenizer humidityTokenizer = new StringTokenizer(humidityData, "_");
         StringTokenizer methaneTokenizer = new StringTokenizer(methaneData, "_");
 
-        String temperatureValue = temperatureTokenizer.nextToken() + " C";
+        String temperatureValue = temperatureTokenizer.nextToken() + " °C";
         String humidityValue = humidityTokenizer.nextToken() + " %";
         String methaneConcentrationValue = methaneTokenizer.nextToken() + " ppm";
 
@@ -417,5 +421,10 @@ public class DashboardActivity extends AppCompatActivity {
             new_s = new_s + ((char) (BLOCK_SIZE - s.length() % BLOCK_SIZE));
         }
         return new_s;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

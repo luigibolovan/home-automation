@@ -57,7 +57,6 @@ public class LightsActivity extends AppCompatActivity {
     private static final int POWER_ON                  = 1;
     private static final int POWER_OFF                 = 0;
     private int SWITCH_VALUE                           = POWER_OFF;
-    public static final String SWITCH_LIGHTS_VALUE_KEY = "SWITCH_VALUE_LIGHTS";
 
     private List<DataUnit> listOfLights;
 
@@ -207,12 +206,20 @@ public class LightsActivity extends AppCompatActivity {
         mDashboard.setOnClickListener(view -> {
             Intent dashboardIntent = new Intent(LightsActivity.this, DashboardActivity.class);
             startActivity(dashboardIntent);
+            finish();
         });
 
         mUserPhoto.setOnClickListener(view -> {
             Intent userIntent = new Intent(LightsActivity.this, UserActivity.class);
             startActivity(userIntent);
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent dashboardIntent = new Intent(LightsActivity.this, DashboardActivity.class);
+        startActivity(dashboardIntent);
+        finish();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
