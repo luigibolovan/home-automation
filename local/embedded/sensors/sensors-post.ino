@@ -18,7 +18,7 @@
 #define WIFI_SSID     ""
 #define WIFI_PASSWORD ""
 #define LOCAL_GW_IP   "192.168.1.10:1310"
-#define POST_PERIOD   5000
+#define POST_PERIOD   10000 //10s
 
 #define DHT_TYPE               DHT22
 #define DHT_PIN                D1
@@ -37,7 +37,7 @@ void postToGW(String data) {
      *********************************************/
     // post data
     Serial.print("[HTTP] begin...\n");
-    http.begin(client, "http://" LOCAL_GW_IP "/sensors"); //HTTP
+    http.begin(client, "http://192.168.1.10:1310/sensors"); //HTTP
     http.addHeader("Content-Type", "application/json");
 
     Serial.print("[HTTP] POST...\n");
