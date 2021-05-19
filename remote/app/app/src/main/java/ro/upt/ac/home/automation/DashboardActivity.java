@@ -92,15 +92,6 @@ public class DashboardActivity extends AppCompatActivity {
                     mCurrentLightsValue = "0_" + date + "_" + time;
                 }
                 encryptThenSend(mCurrentLightsValue, mCurrentDoorLockValue, true, false);
-                // don't change the doorlock status and date
-
-                // then encrypt
-
-                // then do for door lock as well
-
-                // then do charts
-
-                // then do notifications(maybe last thing to do; hardware awaits as well to be done)
             }
         };
 
@@ -115,21 +106,9 @@ public class DashboardActivity extends AppCompatActivity {
                     mCurrentDoorLockValue = "0_" + date + "_" + time;
                 }
                 encryptThenSend(mCurrentLightsValue, mCurrentDoorLockValue, false, true);
-                // don't change the doorlock status and date
-
-                // then encrypt
-
-                // then do for door lock as well
-
-                // then do charts
-
-                // then do notifications(maybe last thing to do; hardware awaits as well to be done)
             }
         };
-
-
         mTemperatureStatic = findViewById(R.id.tv_dashboard_info_and_control_static);
-
 
         mAuthService = FirebaseAuth.getInstance();
     }
