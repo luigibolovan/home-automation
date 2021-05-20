@@ -92,15 +92,6 @@ public class DashboardActivity extends AppCompatActivity {
                     mCurrentLightsValue = "0_" + date + "_" + time;
                 }
                 encryptThenSend(mCurrentLightsValue, mCurrentDoorLockValue, true, false);
-                // don't change the doorlock status and date
-
-                // then encrypt
-
-                // then do for door lock as well
-
-                // then do charts
-
-                // then do notifications(maybe last thing to do; hardware awaits as well to be done)
             }
         };
 
@@ -115,21 +106,9 @@ public class DashboardActivity extends AppCompatActivity {
                     mCurrentDoorLockValue = "0_" + date + "_" + time;
                 }
                 encryptThenSend(mCurrentLightsValue, mCurrentDoorLockValue, false, true);
-                // don't change the doorlock status and date
-
-                // then encrypt
-
-                // then do for door lock as well
-
-                // then do charts
-
-                // then do notifications(maybe last thing to do; hardware awaits as well to be done)
             }
         };
-
-
         mTemperatureStatic = findViewById(R.id.tv_dashboard_info_and_control_static);
-
 
         mAuthService = FirebaseAuth.getInstance();
     }
@@ -174,21 +153,25 @@ public class DashboardActivity extends AppCompatActivity {
         mLightStats.setOnClickListener(view -> {
             Intent lightsStatsIntent = new Intent(DashboardActivity.this, LightsActivity.class);
             startActivity(lightsStatsIntent);
+            finish();
         });
 
         mAirStats.setOnClickListener(view -> {
             Intent airStatsIntent = new Intent(DashboardActivity.this, AirActivity.class);
             startActivity(airStatsIntent);
+            finish();
         });
 
         mDoorLockStats.setOnClickListener(view -> {
             Intent doorlockIntent = new Intent(DashboardActivity.this, DoorLockActivity.class);
             startActivity(doorlockIntent);
+            finish();
         });
 
         mGasStats.setOnClickListener(view -> {
             Intent gasStatsIntent = new Intent(DashboardActivity.this, GasActivity.class);
             startActivity(gasStatsIntent);
+            finish();
         });
 
         mUserProfile.setOnClickListener(view -> {
@@ -413,7 +396,7 @@ public class DashboardActivity extends AppCompatActivity {
         StringTokenizer humidityTokenizer = new StringTokenizer(humidityData, "_");
         StringTokenizer methaneTokenizer = new StringTokenizer(methaneData, "_");
 
-        String temperatureValue = temperatureTokenizer.nextToken() + " C";
+        String temperatureValue = temperatureTokenizer.nextToken() + " °C";
         String humidityValue = humidityTokenizer.nextToken() + " %";
         String methaneConcentrationValue = methaneTokenizer.nextToken() + " ppm";
 
@@ -438,5 +421,10 @@ public class DashboardActivity extends AppCompatActivity {
             new_s = new_s + ((char) (BLOCK_SIZE - s.length() % BLOCK_SIZE));
         }
         return new_s;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

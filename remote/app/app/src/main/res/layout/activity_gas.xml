@@ -120,36 +120,25 @@
         app:layout_constraintRight_toLeftOf="@id/gl_gas_right_1"
         app:layout_constraintTop_toBottomOf="@id/gl_gas_upper_info" />
 
-    <ScrollView
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_methane_gas_selected_date_and_time"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fillViewport="false"
-        android:paddingBottom="96dp"
-        android:scrollbars="none"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/gl_gas_half_horizontal"
+        app:layout_constraintLeft_toRightOf="@id/gl_gas_left_0"
+        app:layout_constraintRight_toLeftOf="@id/gl_gas_right_1" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barchart_gas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/gl_gas_down_1"
         app:layout_constraintLeft_toRightOf="@id/gl_gas_left_0"
         app:layout_constraintRight_toLeftOf="@id/gl_gas_right_1"
-        app:layout_constraintTop_toBottomOf="@id/gl_gas_half_horizontal">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_barchart_gas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/montserrat"
-                android:text="Methane concentration chart" />
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/barchart_gas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_barchart_gas"
-                android:layout_marginTop="8dp" />
-        </RelativeLayout>
-
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@id/gl_gas_half_horizontal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,9 @@ public interface RemoteServerApi {
     @GET("/atmosphere/latest")
     Call<Atmosphere> getAtmosphere();
 
+    @GET("/atmosphere")
+    Call<List<Atmosphere>>getAllAtmospheres();
+
     @GET("/atmosphere/latest10")
     Call<List<Atmosphere>> getAtmospheres();
 
