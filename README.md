@@ -16,6 +16,9 @@
 ### Register
 ![register](demo/register.png)
 
+### User info
+![user](demo/user-info.png)
+
 ### Dashboard
 ![dashboard](demo/dashboard.png)
 
