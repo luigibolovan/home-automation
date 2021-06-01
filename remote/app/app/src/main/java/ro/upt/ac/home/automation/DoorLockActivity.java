@@ -140,27 +140,29 @@ public class DoorLockActivity extends AppCompatActivity {
         byte[] keyBarray = hexStringToByteArray(key);
         SecretKeySpec keySpec = new SecretKeySpec(keyBarray, 0, keyBarray.length, "AES");
 
-        for (Controls control : controls) {
-            Cipher cipher = null;
-            byte[] doorlockBytes = new byte[64];
-            try {
-                cipher = Cipher.getInstance("AES/CBC/NoPadding");
-                cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
-                doorlockBytes = cipher.doFinal(Base64.getDecoder().decode(control.getDoorLock()));
-            } catch (NoSuchAlgorithmException |
-                    NoSuchPaddingException |
-                    InvalidAlgorithmParameterException |
-                    InvalidKeyException |
-                    BadPaddingException |
-                    IllegalBlockSizeException e) {
-                e.printStackTrace();
+        for (int i = controls.size() - 1; i > 0; i --) {
+            if (i == controls.size() - 1 || !controls.get(i).getDoorLock().equals(controls.get(i + 1).getDoorLock())) {
+                Cipher cipher = null;
+                byte[] doorlockBytes = new byte[64];
+                try {
+                    cipher = Cipher.getInstance("AES/CBC/NoPadding");
+                    cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+                    doorlockBytes = cipher.doFinal(Base64.getDecoder().decode(controls.get(i).getDoorLock()));
+                } catch (NoSuchAlgorithmException |
+                        NoSuchPaddingException |
+                        InvalidAlgorithmParameterException |
+                        InvalidKeyException |
+                        BadPaddingException |
+                        IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                }
+                String doorLockData = new String(doorlockBytes);
+                StringTokenizer doorlockTokenizer = new StringTokenizer(doorLockData, "_");
+                String doorLockValue = doorlockTokenizer.nextToken();
+                String doorLockDate = doorlockTokenizer.nextToken();
+                String doorLockTime = doorlockTokenizer.nextToken();
+                listOfDoorlocks.add(new DataUnit(Integer.parseInt(doorLockValue), doorLockDate, doorLockTime));
             }
-            String doorLockData                 = new String(doorlockBytes);
-            StringTokenizer doorlockTokenizer   = new StringTokenizer(doorLockData, "_");
-            String doorLockValue = doorlockTokenizer.nextToken();
-            String doorLockDate  = doorlockTokenizer.nextToken();
-            String doorLockTime  = doorlockTokenizer.nextToken();
-            listOfDoorlocks.add(new DataUnit(Integer.parseInt(doorLockValue), doorLockDate, doorLockTime));
         }
         if (listOfDoorlocks.get(0).getDataUnitValue() == POWER_ON) {
             mPowerBtn.setBackgroundResource(R.drawable.on_button);

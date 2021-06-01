@@ -78,7 +78,7 @@ public class LightsActivity extends AppCompatActivity {
         super.onStart();
         setUserProfilePicture();
         RemoteServerApi rsa = ServiceBuilder.getInstance().buildService(RemoteServerApi.class);
-        Call<List<Controls>> controlCall = rsa.getControls();
+        Call<List<Controls>> controlCall = rsa.getAllControls();
         controlCall.enqueue(new Callback<List<Controls>>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -114,27 +114,29 @@ public class LightsActivity extends AppCompatActivity {
         byte[] keyBarray = hexStringToByteArray(key);
         SecretKeySpec keySpec = new SecretKeySpec(keyBarray, 0, keyBarray.length, "AES");
 
-        for (Controls control : controls) {
-            Cipher cipher = null;
-            byte[] lightsBytes = new byte[64];
-            try {
-                cipher = Cipher.getInstance("AES/CBC/NoPadding");
-                cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
-                lightsBytes = cipher.doFinal(Base64.getDecoder().decode(control.getLights()));
-            } catch (NoSuchAlgorithmException |
-                    NoSuchPaddingException |
-                    InvalidAlgorithmParameterException |
-                    InvalidKeyException |
-                    BadPaddingException |
-                    IllegalBlockSizeException e) {
-                e.printStackTrace();
+        for (int i = controls.size() - 1; i > 0; i --) {
+            if ( i == controls.size() - 1 || !controls.get(i).getLights().equals(controls.get(i + 1).getLights())) {
+                Cipher cipher = null;
+                byte[] lightsBytes = new byte[64];
+                try {
+                    cipher = Cipher.getInstance("AES/CBC/NoPadding");
+                    cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+                    lightsBytes = cipher.doFinal(Base64.getDecoder().decode(controls.get(i).getLights()));
+                } catch (NoSuchAlgorithmException |
+                        NoSuchPaddingException |
+                        InvalidAlgorithmParameterException |
+                        InvalidKeyException |
+                        BadPaddingException |
+                        IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                }
+                String lightsData = new String(lightsBytes);
+                StringTokenizer doorlockTokenizer = new StringTokenizer(lightsData, "_");
+                String doorLockValue = doorlockTokenizer.nextToken();
+                String doorLockDate = doorlockTokenizer.nextToken();
+                String doorLockTime = doorlockTokenizer.nextToken();
+                listOfLights.add(new DataUnit(Integer.parseInt(doorLockValue), doorLockDate, doorLockTime));
             }
-            String lightsData                   = new String(lightsBytes);
-            StringTokenizer doorlockTokenizer   = new StringTokenizer(lightsData, "_");
-            String doorLockValue = doorlockTokenizer.nextToken();
-            String doorLockDate  = doorlockTokenizer.nextToken();
-            String doorLockTime  = doorlockTokenizer.nextToken();
-            listOfLights.add(new DataUnit(Integer.parseInt(doorLockValue), doorLockDate, doorLockTime));
         }
         if (listOfLights.get(0).getDataUnitValue() == POWER_ON) {
             mPowerBtn.setBackgroundResource(R.drawable.on_button);

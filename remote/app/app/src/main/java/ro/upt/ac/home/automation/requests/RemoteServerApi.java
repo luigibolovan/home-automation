@@ -25,6 +25,9 @@ public interface RemoteServerApi {
     @GET("/control/latest10")
     Call<List<Controls>> getControls();
 
+    @GET("/control")
+    Call<List<Controls>> getAllControls();
+
     @POST("/control")
     Call<Controls> setControl(@Body Controls control);
 }
