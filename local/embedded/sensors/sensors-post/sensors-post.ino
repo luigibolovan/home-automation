@@ -23,7 +23,11 @@
 #define DHT_TYPE               DHT22
 #define DHT_PIN                D1
 #define MQ4_PIN                A0
+
 DHT dht(DHT_PIN, DHT_TYPE);
+float lastTemperaturePosted;
+float lastHumidityPosted;
+float lastCH4Posted;
 
 void postToGW(String data) {
     /**********************************************
@@ -102,11 +106,20 @@ void loop() {
         delay(2000);
         return;
     }
-    jsonDoc["Temperature"]              = (int)temperatureC;
-    jsonDoc["Humidity"]                 = (int)humidityRate;
-    jsonDoc["MethaneGasConcentration"]  = methaneConcentration;
-    serializeJson(jsonDoc, output);
-    Serial.println(output);
-    postToGW(output);
+    if ((temperatureC - lastTemperaturePosted > 2.0) ||
+        (humidityRate - lastHumidityPosted > 5.0)    ||
+        (methaneConcentration - lastCH4Posted > 100))
+        {
+            jsonDoc["Temperature"]              = (int)temperatureC;
+            jsonDoc["Humidity"]                 = (int)humidityRate;
+            jsonDoc["MethaneGasConcentration"]  = methaneConcentration;
+            serializeJson(jsonDoc, output);
+            Serial.println(output);
+            postToGW(output);
+            lastTemperaturePosted   = temperatureC;
+            lastHumidityPosted      = humidityRate;
+            lastCH4Posted           = methaneConcentration;
+        }
+    
     delay(POST_PERIOD);
 }
