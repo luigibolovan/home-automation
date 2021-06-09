@@ -106,9 +106,9 @@ void loop() {
         delay(2000);
         return;
     }
-    if ((temperatureC - lastTemperaturePosted > 2.0) ||
-        (humidityRate - lastHumidityPosted > 5.0)    ||
-        (methaneConcentration - lastCH4Posted > 100))
+    if ((abs(temperatureC - lastTemperaturePosted) > 2.0) ||
+        (abs(humidityRate - lastHumidityPosted) > 5.0)    ||
+        (abs(methaneConcentration - lastCH4Posted) > 100))
         {
             jsonDoc["Temperature"]              = (int)temperatureC;
             jsonDoc["Humidity"]                 = (int)humidityRate;
