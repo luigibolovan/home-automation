@@ -6,7 +6,7 @@
 
 ### Current model
 
-![arhitectural_model](schematics/bigpicturev1.png)
+![arhitectural_model](schematics/bigpicturev1_background.png)
 
 ## App screens 
 
