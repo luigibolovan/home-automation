@@ -145,7 +145,7 @@ public class LightsActivity extends AppCompatActivity {
             mPowerBtn.setBackgroundResource(R.drawable.off_button);
             SWITCH_VALUE = POWER_OFF;
         }
-        mLatestControl = controls.get(0);
+        mLatestControl = controls.get(controls.size() - 1);
     }
 
     public static byte[] hexStringToByteArray(String s) {

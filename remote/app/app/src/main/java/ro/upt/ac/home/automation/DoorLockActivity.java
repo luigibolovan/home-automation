@@ -78,7 +78,7 @@ public class DoorLockActivity extends AppCompatActivity {
         setUserProfilePicture();
 
         RemoteServerApi rsa = ServiceBuilder.getInstance().buildService(RemoteServerApi.class);
-        Call<List<Controls>> controlCall = rsa.getControls();
+        Call<List<Controls>> controlCall = rsa.getAllControls();
         controlCall.enqueue(new Callback<List<Controls>>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -171,7 +171,7 @@ public class DoorLockActivity extends AppCompatActivity {
             mPowerBtn.setBackgroundResource(R.drawable.off_button);
             SWITCH_VALUE = POWER_OFF;
         }
-        mLatestControl = controls.get(0);
+        mLatestControl = controls.get(controls.size() - 1);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

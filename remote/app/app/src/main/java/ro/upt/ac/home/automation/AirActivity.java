@@ -32,6 +32,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -157,7 +158,6 @@ public class AirActivity extends AppCompatActivity {
 
         String humidityToDisplay = mHumidityList.get(0).getDataUnitValue() + " %";
         mHumidity.setText(humidityToDisplay);
-
 
         ArrayList<BarEntry> temperatureEntries = new ArrayList<>();
         for (DataUnit dataUnit : mTemperatureList) {
